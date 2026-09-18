@@ -50,6 +50,20 @@ def move():
     update()
     ontimer(move, 100)
 
+
+def move_food():
+    """Move food one random step, staying inside boundaries."""
+    dx = randrange(-1, 2) * 10
+    dy = randrange(-1, 2) * 10
+    new_x = food.x + dx
+    new_y = food.y + dy
+
+    if inside(vector(new_x, new_y)):
+        food.x = new_x
+        food.y = new_y
+
+    ontimer(move_food, 200)
+
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -59,4 +73,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+move_food()
 done()
